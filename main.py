@@ -5,9 +5,9 @@ import json
 
 client = discord.Client()
 def get_price():
-    response = requests.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=creo-engine")
+    response = requests.get("https://api.coingecko.com/api/v3/simple/price?ids=creo-engine&vs_currencies=usd")
     json_data = json.loads(response.text)
-    price = json_data['id']['price_change_24h']
+    price = json_data['creo-engine']['usd']
     return (price)
 status = get_price()       
 @client.event
