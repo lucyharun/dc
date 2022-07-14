@@ -13,8 +13,10 @@ status = get_price()
 @client.event
 async def on_ready():
     print("We have logged in as {0.user}".format(client))
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
-
+    if price >= 0:
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO +{status}% | LucyHarun"))
+    else:
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -22,5 +24,8 @@ async def on_message(message):
     msg = message.content 
     if msg.startswith("!refresh"):
         refresh = get_price()
-        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {refresh}% | LucyHarun"))
+        if price >= 0:
+            await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO +{refresh}% | LucyHarun"))
+        else:
+            await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {refresh}% | LucyHarun"))
 client.run(os.getenv("TOKEN"))
