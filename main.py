@@ -9,6 +9,9 @@ def get_price():
     json_data = json.loads(response.text)
     price = json_data[0]["current_price"]
     return (price)
+def get_price():
+    response = requests.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=creo-engine")
+    json_data = json.loads(response.text)
     pricechange = json_data[0]["price_change_24h"]
     return (pricechange)
 @client.event
