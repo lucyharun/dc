@@ -9,7 +9,7 @@ def get_price():
     json_data = json.loads(response.text)
     price = json_data[0]["current_price"]
     return (price)
-def get_price():
+def get_pricechange():
     response = requests.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=creo-engine")
     json_data = json.loads(response.text)
     pricechange = json_data[0]["price_change_24h"]
@@ -28,6 +28,6 @@ async def on_message(message):
         price = get_price()
         await message.channel.send(f"**CREO Price**: ${price}")  
     if msg.startswith("!refresh"):
-        refresh = get_price()
-        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"${pricechange}"))
+        refresh = get_pricechange()
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"${refresh}"))
 client.run(os.getenv("TOKEN"))
