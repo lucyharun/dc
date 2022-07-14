@@ -22,5 +22,5 @@ async def on_message(message):
     msg = message.content 
     if msg.startswith("!refresh"):
         refresh = get_price()
-        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"${refresh}"))
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"${refresh}|CREO"))
 client.run(os.getenv("TOKEN"))
