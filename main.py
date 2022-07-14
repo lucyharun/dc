@@ -10,6 +10,7 @@ def get_price():
     price = json_data[0]["current_price"]
     pricechange = json_data[0]["price_change_24h"]
     return (pricechange)(price)
+ status = pricechange()
 @client.event
 async def on_ready():
     print("We have logged in as {0.user}".format(client))
@@ -24,6 +25,6 @@ async def on_message(message):
         price = get_price()
         await message.channel.send(f"**CREO Price**: ${price}")  
     if msg.startswith("!refresh"):
-        refresh = get_pricechange()
-        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"${refresh}"))
+        refresh = get_price()
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"${status}"))
 client.run(os.getenv("TOKEN"))
