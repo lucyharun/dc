@@ -16,15 +16,6 @@ async def on_ready():
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
     refresh_price.start()
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-    msg = message.content 
-    if msg.startswith("!refresh"):
-        refresh = get_price()
-        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {refresh}% | LucyHarun"))
-
 @tasks.loop(seconds=float(60))
 async def refresh_price():
         await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
