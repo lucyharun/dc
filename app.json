@@ -7,10 +7,6 @@
     "TOKEN": {
       "description": "Contract of the token/asset: e.g. 0xdac17f958d2ee523a2206206994597c13d831ec7",
       "value": "0xdac17f958d2ee523a2206206994597c13d831ec7"
-    },
-    "REFRESH_TIMER":{
-      "description": "How often should the price be refreshed",
-      "value": "60"
     }
 
   }
