@@ -16,7 +16,7 @@ async def on_ready():
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
     refresh_price.start()
 
-@tasks.loop(seconds=float(60))
+@tasks.loop(seconds=float(REFRESH_TIMER))
 async def refresh_price():
         await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
 client.run(os.getenv("TOKEN"))
