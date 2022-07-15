@@ -12,11 +12,14 @@ def get_price():
 status = get_price()       
 @client.event
 async def on_ready():
-    print("We have logged in as {0.user}".format(client))
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
+    print(f'{client.user} has connected to Discord! ')
+    for guild in client.guilds:
+        print("connected to ", guild.name)
     refresh_price.start()
 
 @tasks.loop(seconds=float(REFRESH_TIMER))
 async def refresh_price():
-        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
+    for guild in client.guilds:
+        await guild.me.edit(activity=discord.Activity(type=discord.ActivityType.watching, name=f"CREO {status}% | LucyHarun"))
+@tasks.loop(seconds=float(REFRESH_TIMER))
 client.run(os.getenv("TOKEN"))
